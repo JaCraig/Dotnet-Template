@@ -1,0 +1,20 @@
+# This workflow will build a .NET project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-net
+
+name: .NET Publish
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  build:
+    uses: "JaCraig/Centralized-Workflows/.github/workflows/dotnet-publish.yml@main"
+    with:
+      user: "JaCraig"
+      user-email: "JaCraig@users.noreply.github.com"
+      coveralls-upload: "./TESTDIRECTORY/TestResults-9.0.x/coverage.net9.0.info"
+      test-filter: "TEST-PROJECT-NAME"
+    secrets:
+      PERSONAL_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
